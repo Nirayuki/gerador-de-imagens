@@ -1,4 +1,6 @@
 var data, error;
+var initMap = 0;
+var sizeMap = 12;
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("name")
@@ -7,7 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector("#button").click()
             }
         });
+    
 });
+
 
 async function Gerar() {
     document.querySelector("#button").innerHTML = ""
@@ -25,7 +29,7 @@ async function Gerar() {
         return
     } else {
         const api_key = "vVkbJlFQZzcJc5HiqIwWxicbgnbYjsldUN6xN7NLRPnAlDW2eFCyPAtv";
-        const api_url = `https://api.pexels.com/v1/search?query=${foto}&per_page=16`;
+        const api_url = `https://api.pexels.com/v1/search?query=${foto}&per_page=80`;
 
         fetch(api_url, {
             method: "GET",
@@ -36,14 +40,16 @@ async function Gerar() {
         })
             .then(response => response.json())
             .then(res => {
-                data = res
-                console.log(res);
+                data = res;
+                initMap = 0;
+                sizeMap = 12;
+
                 document.querySelector("#button").innerHTML = `
             Gerar Foto
         `
                 fotoDiv.innerHTML = '';
 
-                data.photos.forEach((item, key) => {
+                data.photos.slice(initMap, sizeMap).forEach((item, key) => {
                     const linkElement = document.createElement('a');
                     linkElement.href = item.url; // Defina o link para o URL da imagem
                     linkElement.target = "_blank"
@@ -58,6 +64,7 @@ async function Gerar() {
 
                     // Anexe o link (com a imagem dentro) à fotoDiv
                     fotoDiv.appendChild(linkElement);
+                    document.getElementById("pagination").style.display = "flex"
                 });
 
             })
@@ -84,4 +91,60 @@ async function Gerar() {
             })
     }
 
+}
+
+function nextPage(){
+    if(sizeMap <= data.photos.length){
+        console.log(`lenght data: ${data.photos.length} | sizeMap: ${sizeMap} | initMap: ${initMap}`)
+        initMap = initMap === 0 ? 12 : initMap + 12;
+        sizeMap = sizeMap + 12;
+    
+        fotoDiv = document.getElementById("foto");
+        fotoDiv.innerHTML = '';
+        data.photos.slice(initMap, sizeMap).forEach((item, key) => {
+            const linkElement = document.createElement('a');
+            linkElement.href = item.url; // Defina o link para o URL da imagem
+            linkElement.target = "_blank"
+            linkElement.className = "img_a"
+    
+            // Crie o elemento <img> e configure o atributo src
+            const imgElement = document.createElement('img');
+            imgElement.src = item.src.medium;
+    
+            // Anexe a imagem ao link
+            linkElement.appendChild(imgElement);
+    
+            // Anexe o link (com a imagem dentro) à fotoDiv
+            fotoDiv.appendChild(linkElement);
+            document.getElementById("pagination").style.display = "flex"
+        });
+    }
+
+}
+
+function prevPage(){
+    if(initMap >= 0){
+        initMap = initMap === 0 ? 0 : initMap - 12;
+        sizeMap = sizeMap === 12 ? 12 : sizeMap - 12;
+        fotoDiv = document.getElementById("foto");
+        console.log(`lenght data: ${data.photos.length} | sizeMap: ${sizeMap} | initMap: ${initMap}`)
+        fotoDiv.innerHTML = '';
+        data.photos.slice(initMap, sizeMap).forEach((item, key) => {
+            const linkElement = document.createElement('a');
+            linkElement.href = item.url; // Defina o link para o URL da imagem
+            linkElement.target = "_blank"
+            linkElement.className = "img_a"
+    
+            // Crie o elemento <img> e configure o atributo src
+            const imgElement = document.createElement('img');
+            imgElement.src = item.src.medium;
+    
+            // Anexe a imagem ao link
+            linkElement.appendChild(imgElement);
+    
+            // Anexe o link (com a imagem dentro) à fotoDiv
+            fotoDiv.appendChild(linkElement);
+            document.getElementById("pagination").style.display = "flex"
+        });
+    }
 }

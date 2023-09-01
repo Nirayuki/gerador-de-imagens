@@ -183,3 +183,17 @@ img:hover{
     font-size: 1rem;
   }
 }
+
+.pagination{
+  width: 100%;
+  max-width: 700px;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  display: none;
+}
+
+.next, .prev{
+  width: auto;
+}
