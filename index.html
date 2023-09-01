@@ -31,11 +31,18 @@
       <input id="name" type="text" placeholder="Nome da Imagem">
       <button onclick="Gerar()" id="button">Gerar</button>
     </div>
-    <div class="pagination" id="pagination">
+    <!-- <div class="pagination" id="pagination">
       <button onclick="prevPage()" class="prev" id="prev">&laquo;</button>
       <button onclick="nextPage()" class="next" id="next">&raquo;</button>
-    </div>
+    </div> -->
     <div class="foto" id="foto"></div>
+    <div class="more" id="more">
+      <button style="width: 170px;" onclick="more()">Carregar mais</button>
+    </div>
+    <div class="nodata" id="nodata">
+      <i class="fa fa-frown-o" aria-hidden="true"></i>
+      <p>Nenhuma foto encontrada</p>
+    </div>
   </div>
 </body>
 <script src="index.js"></script>

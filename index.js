@@ -1,5 +1,4 @@
 var data, error;
-var initMap = 0;
 var sizeMap = 12;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector("#button").click()
             }
         });
-    
+
 });
 
 
@@ -49,7 +48,7 @@ async function Gerar() {
         `
                 fotoDiv.innerHTML = '';
 
-                data.photos.slice(initMap, sizeMap).forEach((item, key) => {
+                data.photos.slice(0, sizeMap).forEach((item, key) => {
                     const linkElement = document.createElement('a');
                     linkElement.href = item.url; // Defina o link para o URL da imagem
                     linkElement.target = "_blank"
@@ -64,8 +63,20 @@ async function Gerar() {
 
                     // Anexe o link (com a imagem dentro) à fotoDiv
                     fotoDiv.appendChild(linkElement);
-                    document.getElementById("pagination").style.display = "flex"
+                   
                 });
+
+                if(data.photos.length === 0){
+                    document.getElementById("nodata").style.display = "flex"
+                }else{
+                    document.getElementById("nodata").style.display = "none"
+                }
+
+                if(sizeMap >= data.photos.length){
+                    document.getElementById("more").style.display = "none"
+                }else{
+                    document.getElementById("more").style.display = "block"
+                }
 
             })
             .catch(erro => {
@@ -75,7 +86,7 @@ async function Gerar() {
                 `
 
                 const toast = document.getElementById("toast")
-            
+
                 toast.style.display = "block"
                 toast.innerHTML = `
                     <p class="toast-p">Descuple, houve um erro indesejado!<i class="fa fa-close" onclick="
@@ -93,12 +104,12 @@ async function Gerar() {
 
 }
 
-function nextPage(){
-    if(sizeMap <= data.photos.length){
+function nextPage() {
+    if (sizeMap <= data.photos.length) {
         console.log(`lenght data: ${data.photos.length} | sizeMap: ${sizeMap} | initMap: ${initMap}`)
         initMap = initMap === 0 ? 12 : initMap + 12;
         sizeMap = sizeMap + 12;
-    
+
         fotoDiv = document.getElementById("foto");
         fotoDiv.innerHTML = '';
         data.photos.slice(initMap, sizeMap).forEach((item, key) => {
@@ -106,14 +117,14 @@ function nextPage(){
             linkElement.href = item.url; // Defina o link para o URL da imagem
             linkElement.target = "_blank"
             linkElement.className = "img_a"
-    
+
             // Crie o elemento <img> e configure o atributo src
             const imgElement = document.createElement('img');
             imgElement.src = item.src.medium;
-    
+
             // Anexe a imagem ao link
             linkElement.appendChild(imgElement);
-    
+
             // Anexe o link (com a imagem dentro) à fotoDiv
             fotoDiv.appendChild(linkElement);
             document.getElementById("pagination").style.display = "flex"
@@ -122,8 +133,8 @@ function nextPage(){
 
 }
 
-function prevPage(){
-    if(initMap >= 0){
+function prevPage() {
+    if (initMap >= 0) {
         initMap = initMap === 0 ? 0 : initMap - 12;
         sizeMap = sizeMap === 12 ? 12 : sizeMap - 12;
         fotoDiv = document.getElementById("foto");
@@ -134,17 +145,46 @@ function prevPage(){
             linkElement.href = item.url; // Defina o link para o URL da imagem
             linkElement.target = "_blank"
             linkElement.className = "img_a"
-    
+
             // Crie o elemento <img> e configure o atributo src
             const imgElement = document.createElement('img');
             imgElement.src = item.src.medium;
-    
+
             // Anexe a imagem ao link
             linkElement.appendChild(imgElement);
-    
+
             // Anexe o link (com a imagem dentro) à fotoDiv
             fotoDiv.appendChild(linkElement);
             document.getElementById("pagination").style.display = "flex"
         });
+    }
+}
+
+function more() {
+    if (sizeMap <= data.photos.length) {
+        sizeMap = sizeMap + 12;
+
+        fotoDiv = document.getElementById("foto");
+        fotoDiv.innerHTML = '';
+        data.photos.slice(0, sizeMap).forEach((item, key) => {
+            const linkElement = document.createElement('a');
+            linkElement.href = item.url; // Defina o link para o URL da imagem
+            linkElement.target = "_blank"
+            linkElement.className = "img_a"
+
+            // Crie o elemento <img> e configure o atributo src
+            const imgElement = document.createElement('img');
+            imgElement.src = item.src.medium;
+
+            // Anexe a imagem ao link
+            linkElement.appendChild(imgElement);
+
+            // Anexe o link (com a imagem dentro) à fotoDiv
+            fotoDiv.appendChild(linkElement);
+        });
+
+        if(sizeMap >= data.photos.length){
+            document.getElementById("more").style.display = "none"
+        }
     }
 }

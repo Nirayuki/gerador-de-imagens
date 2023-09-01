@@ -184,6 +184,21 @@ img:hover{
   }
 }
 
+.nodata{
+  display: none;
+
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5rem;
+}
+
+.more{
+  display: none;
+}
+
 .pagination{
   width: 100%;
   max-width: 700px;
