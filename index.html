@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="loading.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="index.js"></script>
   <title>Accstore</title>
 </head>
+
 <body>
+  <div class="toast" id="toast"></div>
   <header>
     <div class="title">
-      Gerador de foto
+      <span>Gerador de foto</span>
+      <p>Created by <a href="https://nirayuki.netlify.app/" target="_blank">Nirayuki</a></p>
     </div>
   </header>
-   <div class="content">
-      <button onclick="Gerar()">Gerar foto</button>
-      <div class="foto"></div>
+  <div class="content">
+    <div class="header">
+      <input id="name" type="text" placeholder="Nome da Imagem">
+      <button onclick="Gerar()" id="button">Gerar foto</button>
     </div>
+    <div class="foto" id="foto"></div>
+  </div>
 </body>
+
 </html>

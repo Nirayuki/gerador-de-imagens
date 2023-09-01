@@ -1,6 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
   box-sizing: border-box;
   margin: 0;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.toast{
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(255, 0, 0, 0.9);
+
+  color: white;
+  padding: 20px 0px;
+
+  z-index: 999;
+
+  border-radius: 6px;
+}
+
+.toast-p{
+  padding: 0px 20px;
+  display: flex;
+  gap: 10px;
+}
+
+i{
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 4px;
+  width: 100%;
+  background-color: #ccc;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: progress 5s linear;
+}
+
+@keyframes progress {
+  0% {
+      width: 100%;
+  }
+  100% {
+      width: 0;
+  }
 }
 
 header{
@@ -18,15 +67,30 @@ header{
 
 .title{
   width: 100%;
-  max-width: 1200px; 
+  max-width: 700px; 
 
   font-size: 1.5rem; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+a{
+  text-decoration: none;
+
+  font-size: 0.85rem;
+}
+
+p{
+  font-size: 0.85rem;
 }
 
 .content{
+  padding: 0px 20px;
   width: 100%;
 
-  margin-top: 50px;
+  margin: 50px 0px;
 
   display: flex;
   gap: 50px;
@@ -35,19 +99,87 @@ header{
 }
 
 button{
-  width: 150px;
-  padding: 20px;
-  font-size: 1.2rem;
+  width: 130px;
+  padding: 10px 20px;
+  font-size: 1rem;
   color: white;
   background-color: purple;
 
   border: none;
   border-radius: 6px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover{
+  opacity: 0.8;
+}
+
+.header{
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+input{
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  outline: none;
 }
 
 .foto{
-  height: 500px;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.img_a{
+  width: 100%;
+  height: 200px;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  
+  object-fit: cover;
+
+  transition: .2s ease;
+  cursor: pointer;
+}
+
+img:hover{
+  transform: translateY(-6px);
+}
+
+@media (max-width: 750px){
+  .foto{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 570px){
+  .foto{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px){
+  .foto{
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  span{
+    font-size: 1rem;
+  }
 }
