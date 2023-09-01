@@ -30,7 +30,7 @@ async function Gerar() {
         fetch(api_url, {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${api_key}`,
+                "Authorization": api_key,
 
             }
         })
