@@ -67,7 +67,7 @@ header{
 
 .title{
   width: 100%;
-  max-width: 700px; 
+  max-width: 1000px; 
 
   font-size: 1.5rem; 
   display: flex;
@@ -119,7 +119,7 @@ button:hover{
 }
 
 .header{
-  max-width: 700px;
+  max-width: 1000px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -136,7 +136,7 @@ input{
 
 .foto{
   width: 100%;
-  max-width: 700px;
+  max-width: 1000px;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -145,7 +145,7 @@ input{
 
 .img_a{
   width: 100%;
-  height: 200px;
+  height: 250px;
 }
 
 img{
@@ -180,7 +180,17 @@ img:hover{
   }
 
   span{
-    font-size: 1rem;
+    font-size: 0.85rem;
+  }
+
+  a{
+    text-decoration: none;
+  
+    font-size: 0.75rem;
+  }
+  
+  p{
+    font-size: 0.75rem;
   }
 }
 
@@ -201,7 +211,7 @@ img:hover{
 
 .pagination{
   width: 100%;
-  max-width: 700px;
+  max-width: 1000px;
 
   display: flex;
   justify-content: flex-end;
