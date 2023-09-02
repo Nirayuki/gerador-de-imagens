@@ -55,7 +55,7 @@ $ git clone https://github.com/Nirayuki/todo-typescript
 
 # 🐛 Issues
 
-Feel free to **file a new issue** with a respective title and description on the [NexBoard](https://github.com/Nirayuki/gerador-de-imagens/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
+Feel free to **file a new issue** with a respective title and description on the [Imagens Nira](https://github.com/Nirayuki/gerador-de-imagens/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
 
 # 🎉 Contributing
 
